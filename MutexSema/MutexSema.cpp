@@ -41,12 +41,17 @@ DWORD WINAPI MutexWorker(LPVOID lpParam)
 DWORD WINAPI SemaphoreWorker(LPVOID lpParam)
 {
     string threadName((const char*) lpParam);
+    
+    DWORD waitResult = WaitForSingleObject(hMutex, INFINITE);
     cout << threadName << " beantragt Semaphore " << endl;
-    DWORD waitResult = WaitForSingleObject(hSemaphore, INFINITE);
+    ReleaseMutex(hMutex);
+    waitResult = WaitForSingleObject(hSemaphore, INFINITE);
     switch (waitResult)
     {
     case WAIT_OBJECT_0:
+        WaitForSingleObject(hMutex, INFINITE);
         cout << threadName << " hat Semaphore erhalten " << endl;
+        ReleaseMutex(hMutex);
         Sleep(2000);
         break;
         
@@ -54,7 +59,9 @@ DWORD WINAPI SemaphoreWorker(LPVOID lpParam)
         break;
     }
     
+    waitResult = WaitForSingleObject(hMutex, INFINITE);
     cout << threadName << " gibt Semaphore frei" << endl;
+    ReleaseMutex(hMutex);
     
     if (!ReleaseSemaphore(hSemaphore, 1, 0))
     {
@@ -98,7 +105,6 @@ int main()
     {
         CloseHandle(hMutexThreads[i]);
     }
-    CloseHandle(hMutex);
 
     hSemaphore = CreateSemaphore(NULL, 3, 3, NULL);
     if (hSemaphore == NULL){
@@ -130,5 +136,6 @@ int main()
         CloseHandle(hSThreads[i]);
     }
     CloseHandle(hSemaphore);
+    CloseHandle(hMutex);
    return 0;
 }
