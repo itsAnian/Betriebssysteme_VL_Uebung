@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Betriebssysteme_CPP", "Betriebssysteme_CPP\Betriebssysteme_CPP.vcxproj", "{181FCBBB-1E07-4431-8948-0F716E0F765C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Threads", "Threads\Threads.vcxproj", "{C0955B96-1F48-45DB-9863-EFE0A2158F79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MutexSema", "MutexSema\MutexSema.vcxproj", "{FF51A46A-0F59-4D7B-A81B-5106E2981050}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -18,5 +22,21 @@ Global
 		{181FCBBB-1E07-4431-8948-0F716E0F765C}.Release|Win32.Build.0 = Release|Win32
 		{181FCBBB-1E07-4431-8948-0F716E0F765C}.Release|x64.ActiveCfg = Release|x64
 		{181FCBBB-1E07-4431-8948-0F716E0F765C}.Release|x64.Build.0 = Release|x64
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Debug|Win32.Build.0 = Debug|Win32
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Debug|x64.ActiveCfg = Debug|x64
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Debug|x64.Build.0 = Debug|x64
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Release|Win32.ActiveCfg = Release|Win32
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Release|Win32.Build.0 = Release|Win32
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Release|x64.ActiveCfg = Release|x64
+		{C0955B96-1F48-45DB-9863-EFE0A2158F79}.Release|x64.Build.0 = Release|x64
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Debug|Win32.Build.0 = Debug|Win32
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Debug|x64.ActiveCfg = Debug|x64
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Debug|x64.Build.0 = Debug|x64
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Release|Win32.ActiveCfg = Release|Win32
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Release|Win32.Build.0 = Release|Win32
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Release|x64.ActiveCfg = Release|x64
+		{FF51A46A-0F59-4D7B-A81B-5106E2981050}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
