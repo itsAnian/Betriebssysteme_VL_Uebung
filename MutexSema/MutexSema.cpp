@@ -38,6 +38,31 @@ DWORD WINAPI MutexWorker(LPVOID lpParam)
     return 1;
 }
 
+DWORD WINAPI SemaphoreWorker(LPVOID lpParam)
+{
+    string threadName((const char*) lpParam);
+    cout << threadName << " beantragt Semaphore " << endl;
+    DWORD waitResult = WaitForSingleObject(hSemaphore, INFINITE);
+    switch (waitResult)
+    {
+    case WAIT_OBJECT_0:
+        cout << threadName << " hat Semaphore erhalten " << endl;
+        Sleep(2000);
+        break;
+        
+    case WAIT_ABANDONED:
+        break;
+    }
+    
+    cout << threadName << " gibt Semaphore frei" << endl;
+    
+    if (!ReleaseSemaphore(hSemaphore, 1, 0))
+    {
+        cout << threadName << " Semaphore nicht freigebbar" << endl;
+    }
+    return 1;
+}
+
 int main()
 {
     sharedCounter = 0;
@@ -74,5 +99,36 @@ int main()
         CloseHandle(hMutexThreads[i]);
     }
     CloseHandle(hMutex);
-    return 0;
+
+    hSemaphore = CreateSemaphore(NULL, 3, 3, NULL);
+    if (hSemaphore == NULL){
+        cerr << "CreateSemaphore failed " << GetLastError() << endl;
+        return 1;
+    }
+
+    HANDLE hSThreads[7];
+    const char* sThreadNames[7] = {"Thread1S", "Thread2S", "Thread3S", "Thread4S", "Thread5S", "Thread6S", "Thread7S"};
+    for (int i = 0; i<7;i++)
+    {
+        hSThreads[i] = CreateThread(
+            NULL,
+            0,
+            SemaphoreWorker,
+            (LPVOID)sThreadNames[i],
+            0,
+            NULL
+            );
+        if (hSThreads[i] == NULL)
+        {
+            cerr << "CreateSemaphore failed " << GetLastError() << endl;
+            return 1;
+        }
+    }
+    WaitForMultipleObjects(7, hSThreads, TRUE, INFINITE);
+    for (int i = 0; i<7;i++)
+    {
+        CloseHandle(hSThreads[i]);
+    }
+    CloseHandle(hSemaphore);
+   return 0;
 }
